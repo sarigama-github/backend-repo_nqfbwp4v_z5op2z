@@ -3,15 +3,17 @@ Database Schemas for VIYAN FASHION WORLD
 
 Each Pydantic model corresponds to a MongoDB collection (lowercased name).
 """
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, HttpUrl
 from typing import List, Optional
 
+# Admin settings (collection: "adminsettings")
 class AdminSettings(BaseModel):
     username: str = Field(..., description="Admin username")
     password_hash: str = Field(..., description="SHA256 hash of admin password")
     upi_id: str = Field("viyan@upi", description="UPI ID for checkout")
     logo_url: Optional[str] = Field(None, description="Logo image URL")
 
+# Product (collection: "product")
 class Product(BaseModel):
     name: str
     description: Optional[str] = None
